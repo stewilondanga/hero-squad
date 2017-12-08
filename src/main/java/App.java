@@ -111,7 +111,10 @@ post("/teams", (request, response) -> {
   Hero newHero = new Hero(name, age, strength, weakness);
   heroes.add(newHero);
 
-          model
-      })
+          model.put("template", "templates/success.vtl");
+          return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+
   }
 }
