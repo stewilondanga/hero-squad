@@ -95,6 +95,16 @@ post("/teams", (request, response) -> {
 }, new VelocityTemplateEngine());
 
 //a route to process new-hero form submission
+      post("/heroes", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
 
+      ArrayList<Hero> heroes = request.session().attribute("heroes");
+      if (heroes == null) {
+      heroes = new ArrayList<Hero>();
+      request.session().attribute("heroes", heroes);
+      }
+
+      String name = 
+      })
   }
 }
