@@ -77,6 +77,24 @@ get("/teams/:id", (request, response) -> {
 }, new VelocityTemplateEngine());
 
 //Because we are now exclusively creating new Hero objects after selecting their corresponding Team this route will replace our Hero objects
+get("teams/:id/heroes/new", (request, response) -> {
+  Map<String, Object> model = new HashMap<String, Object>();
+  Team team = Team.find(Integer.parseInt(request.params(":id")));
+  model.put("team", team);
+  model.put("template", "templates/teamheroesform.vtl");
+  return new ModelAndView(model, layout);
+}, new VelocityTemplateEngine());
+
+// a route to process new-team form submission
+post("/teams", (request, response) -> {
+  Map<String, Object> model = new HashMap<String, Object>();
+  String name = request.queryParams("name");
+  Team newTeam = new Team(name);
+  model.put("template", "templates/teamsuccess.vtl");
+  return new ModelAndView(model, layout);
+}, new VelocityTemplateEngine());
+
+//a route to process new-hero form submission
 
   }
 }
