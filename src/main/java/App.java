@@ -68,5 +68,15 @@ get("/teams", (request, response) -> {
 }, new VelocityTemplateEngine());
 
 //routing and a basic template setup
+get("/teams/:id", (request, response) -> {
+  Map<String, Object> model = new HashMap<String, Object>();
+  Team team = Team.find(Integer.parseInt(request.params(":id")));
+  model.put("team", team);
+  model.put("template", "templates/team.vtl");
+  return new ModelAndView(model,layout);
+}, new VelocityTemplateEngine());
+
+//Because we are now exclusively creating new Hero objects after selecting their corresponding Team this route will replace our Hero objects
+
   }
 }
