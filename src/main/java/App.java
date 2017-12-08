@@ -59,6 +59,14 @@ public class App {
   return new ModelAndView(model, layout);
 }, new VelocityTemplateEngine());
 
+//route to display all teams
+get("/teams", (request, response) -> {
+  Map<String, Object> model = new HashMap<String, Object>();
+  model.put("teams", Team.all());
+  model.put("template", "templates/teams.vtl");
+  return new ModelAndView(model, layout);
+}, new VelocityTemplateEngine());
 
+//routing and a basic template setup
   }
 }
