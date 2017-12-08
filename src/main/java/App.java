@@ -104,7 +104,14 @@ post("/teams", (request, response) -> {
       request.session().attribute("heroes", heroes);
       }
 
-      String name = 
+      String name = request.queryParams("name");
+  int age = Integer.parseInt(request.queryParams("age"));
+  String strength = request.queryParams("strength");
+  String weakness = request.queryParams("weakness");
+  Hero newHero = new Hero(name, age, strength, weakness);
+  heroes.add(newHero);
+
+          model
       })
   }
 }
